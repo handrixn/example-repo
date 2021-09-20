@@ -10,4 +10,10 @@ func main() {
 	app.LoadEnvFile("./.env")
 
 	db := app.NewSQLDatabase()
+
+	category := domain.Category{Name: "Cooking"}
+
+	db.Create(&category)
+
+	fmt.Println(category)
 }

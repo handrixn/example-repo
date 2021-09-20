@@ -16,11 +16,12 @@ func NewSQLDatabase() *gorm.DB {
 	dbHost := os.Getenv("DB_HOST")
 	dbPort := os.Getenv("DB_PORT")
 	dbName := os.Getenv("DB_NAME")
+	dbTimeZone := os.Getenv("DB_TIME_ZONE")
 
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", dbUsername, dbPassword, dbHost, dbPort, dbName)
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=%s", dbUsername, dbPassword, dbHost, dbPort, dbName, dbTimeZone)
 
 	mysqlConfig := mysql.Config{
-		DSN: dsn,
+		DSN:                       dsn,
 		SkipInitializeWithVersion: false,
 	}
 
